@@ -17,6 +17,9 @@ class Profile(models.Model):
   profile_type = models.PositiveSmallIntegerField(choices=PROFILE_TYPE, blank=True, null=True)
   Phone_number = models.EmailField()
 
+  def __str__(self):
+    return self.name
+
 class Produce(models.Model):
   PRODUCE_UNIT = (
         ('LT', 'Litres'),
@@ -24,13 +27,14 @@ class Produce(models.Model):
         ('C', 'Crates'),
         ('E', 'Each'),
     )
-  Produce_type =models.CharField(max_length=255)
+  produce_type =models.CharField(max_length=255)
   produce_description = models.CharField(max_length=255)
   produce_unit = models.CharField(max_length=2, choices=PRODUCE_UNIT)
   produce_price =models.CharField(max_length=255)
   produce_location =models.CharField(max_length=255)
 
-
+  def __str__(self):
+    return self.produce_type
 
 class Comment(models.Model):
     post = models.ForeignKey(Produce,on_delete=models.CASCADE,related_name='comments')
