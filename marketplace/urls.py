@@ -1,17 +1,13 @@
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from .models import Produce, Profile
+from django.urls import path
 
-
-class ProfileView(APIView):
-  def get(self, request):
-    profiles = Profile.objects.all()
-    return Response({"profiles": profiles})
+from .views import ProduceView,ProfileView
 
 
-class ProduceView(APIView):
-  def get (self,request):
-    produce=Produce.objects.all()
-    return Response({"produce":produce})
-    
+app_name = "marketplace"
+
+# app_name will help us do a reverse look-up latter.
+urlpatterns = [
+    path('produce/', ProduceView.as_view()),
+    path('profiles/',ProfileView.as_view()),
+]
