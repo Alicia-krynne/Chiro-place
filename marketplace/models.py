@@ -15,7 +15,7 @@ class Profile(models.Model):
   name = models.CharField(max_length=255)
   bio = models.CharField(max_length=1000)
   profile_type = models.PositiveSmallIntegerField(choices=PROFILE_TYPE, blank=True, null=True)
-  Phone_number = models.EmailField()
+  Phone_number = models.CharField(max_length=255)
 
   def __str__(self):
     return self.name
@@ -27,6 +27,7 @@ class Produce(models.Model):
         ('C', 'Crates'),
         ('E', 'Each'),
     )
+  produce_image = CloudinaryField("produce_images",null= True)
   produce_type =models.CharField(max_length=255)
   produce_description = models.CharField(max_length=255)
   produce_unit = models.CharField(max_length=2, choices=PRODUCE_UNIT)
