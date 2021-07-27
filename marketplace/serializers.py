@@ -3,9 +3,9 @@ from rest_framework import serializers
 
 
 class ProduceSerializer(serializers.Serializer):
-  produce_type =serializers.charField(max_length=255)
-  produce_description = serializers.charField(max_length=255)
-  produce_unit = serializers.CharField(max_length=2, choices=PRODUCE_UNIT)
+  produce_type =serializers.CharField(max_length=255)
+  produce_description = serializers.CharField(max_length=255)
+  produce_unit = serializers.CharField(max_length=2)
   produce_price =serializers.CharField(max_length=255)
   produce_location =serializers.CharField(max_length=255)
 
