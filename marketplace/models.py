@@ -4,17 +4,14 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Profile(models.Model):
-  FARMER = 1
-  CONSUMER =2
-    
   PROFILE_TYPE=(
-  (FARMER, 'Farmer'),
-  (CONSUMER,'consumer'),
+  ('FARMER', 'Farmer'),
+  ('CONSUMER','Consumer'),
   )   
-  profile_picture = CloudinaryField("profilepics",null= True)
+  photo_url = CloudinaryField("profilepics",null= True)
   name = models.CharField(max_length=255)
   bio = models.CharField(max_length=1000)
-  profile_type = models.PositiveSmallIntegerField(choices=PROFILE_TYPE, blank=True, null=True)
+  profile_type = models.CharField(max_length=255,choices=PROFILE_TYPE )
   Phone_number = models.CharField(max_length=255)
 
   def __str__(self):
@@ -31,7 +28,7 @@ class Produce(models.Model):
   produce_type =models.CharField(max_length=255)
   produce_description = models.CharField(max_length=255)
   produce_unit = models.CharField(max_length=2, choices=PRODUCE_UNIT)
-  produce_price =models.CharField(max_length=255)
+  produce_price =models.IntegerField()
   produce_location =models.CharField(max_length=255)
 
   def __str__(self):
