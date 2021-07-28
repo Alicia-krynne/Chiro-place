@@ -1,0 +1,84 @@
+{% load bootstrap4 %}
+{% load static%}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHIRO {{title}}</title>
+
+{% block styles %} 
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.9/css/star-rating.min.css" integrity="sha512-Q1t4nmx/2UzBKmzkFk01AHErcEd033B+Pi3kkUGPCzk6jvvmLCkihk4x+vG/bLQejLDsGXxLCgaGyungqgFydg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.9/js/star-rating.min.js">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  {% bootstrap_css %} 
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  {% endblock %}
+</head>
+<body>
+  {% include "navbar.html" %}
+   
+  {%block content%}
+
+
+   {%endblock%}
+  
+
+  {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+      <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+      <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+   {% bootstrap_javascript %}
+  {% endblock %}
+</body>
+<div class="mb-4 pb-4"></div>
+   <!-- Footer -->
+   <footer class="page-footer font-small special-color-dark pt-4">
+
+    <!-- Footer Elements -->
+    <div class="container">
+  
+      <!-- Social buttons -->
+      <ul class="list-unstyled list-inline text-center">
+        <li class="list-inline-item">
+          <a class="btn-floating btn-fb mx-1">
+            <i class="fab fa-facebook-f"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-tw mx-1">
+            <i class="fab fa-twitter"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-gplus mx-1">
+            <i class="fab fa-google-plus-g"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-li mx-1">
+            <i class="fab fa-linkedin-in"> </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn-floating btn-dribbble mx-1">
+            <i class="fab fa-dribbble"> </i>
+          </a>
+        </li>
+      </ul>
+      <!-- Social buttons -->
+  
+    </div>
+    <!-- Footer Elements -->
+  
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    © 2021 Copyright By Macrine Alice     
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</html>

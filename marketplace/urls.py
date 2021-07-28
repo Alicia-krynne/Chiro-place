@@ -10,6 +10,6 @@ app_name = "marketplace"
 urlpatterns = [
     path('produce/', ProduceView.as_view()),
     path('profiles/',ProfileView.as_view()),
-    path('profile/<int:pk>',ProduceView.as_view()),
-    path('produce/<int:pk>',ProduceView.as_view()),
-]
+#     path('profile/<int:pk>',ProduceView.as_view()),
+#     path('produce/<int:pk>',ProduceView.as_view()),
+  ]

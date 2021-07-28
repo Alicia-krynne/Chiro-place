@@ -7,6 +7,12 @@ from django.http.response import Http404
 from rest_framework import serializers,status
 from .permissions import IsAdminOrReadOnly
 
+def welcome(request):
+    profile=Profile.objects.all()
+    produce= Produce.display_all_produce()
+    
+    return render(request,'welcome.html',{"produce":produce,"profile":profile})
+
 class ProfileView(APIView):
   def get_profile(self , pk):
         try:

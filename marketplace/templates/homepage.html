@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{%load static%}
+{% block content %}
+{{ block.super}}
+
+<div class="container" id="main" style='background-color:rgb(86, 226, 245)' float="justify-content-t">
+      <div class="row">
+        <div class="column">
+                  <h3>HI THIS IS CHIRO ! </h3>
+
+                  <P>Buy  or  sell fresh  off the  farm  produce  here</P>
+        </div>
+      </div>
+
+
+  {% if user.is_authenticated %}
+  <section>
+    <p>CHIRO PRODUCTS</p>
+    {%if produce%}
+{%for produce in produce%}
+ <div class="container">
+<div  class="row">
+  <div class="col-md-4">
+    <div class="m-6">
+      <div class="card " style="width: 20rem; height: 22rem;">
+        <div class="card-image ">
+          <a href="">
+            <img class="card-img-top" src="{{produce_image.image.url}}" alt="Card image cap">
+          </a>
+          
+        </div>
+        <div class="card-body " style="padding-bottom: 10px;">
+          <h5 class="card-title "><a href=""
+              class="home-card-title">{{produce.produce_type}}</a></h5>
+              <div class="card-footer " style="padding-bottom: 10px;">
+                  <h5>{{produce.produce_description}}</h5></div>
+          <hr> 
+          <img src="{{produce.produce_image.image_url}}" alt="user" style="width: 27px; height: 27px;" class="rounded-circle imag">
+          By<a href="{% url 'profile' profile.name}" class="ml-2 home-username">{{profile.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </section>
+
+  {% else %}
+  <section>
+    <form  action="/accounts/register/" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+      </div>
+      <input type="hidden" name="next" value="{{next}}">
+
+    </form>
+  </section>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+
+
+
+
