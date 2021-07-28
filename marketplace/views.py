@@ -5,6 +5,7 @@ from .serializers import ProduceSerializer,ProfileSerializer
 from django.shortcuts import render ,redirect
 from django.http.response import Http404
 from rest_framework import serializers,status
+from .permissions import IsAdminOrReadOnly
 
 class ProfileView(APIView):
   def get_profile(self , pk):
@@ -12,13 +13,14 @@ class ProfileView(APIView):
             return Profile.objects.get(pk=pk)
         except Profile.DoesNotExist:
             return Http404
-            
+
   def get(self, request):
     profile=Profile.objects.all()
     serializer = ProfileSerializer(profile, many=True)
     return Response({"profile": serializer.data})
   
   def post(self,request,format=None):
+        permission_classes = (IsAdminOrReadOnly,)
         serializers = ProfileSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
@@ -38,6 +40,7 @@ class ProduceView(APIView):
     return Response({"produce": serializer.data})
   
   def post(self,request,format=None):
+        permission_classes = (IsAdminOrReadOnly,)
         serializers = ProduceSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
@@ -45,6 +48,7 @@ class ProduceView(APIView):
         return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
 
   def put(self , request ,pk, format= None):
+        permission_classes = (IsAdminOrReadOnly,)
         produce = self.get_produce(pk)
         serializers = ProduceSerializer(produce , request.data)
         if serializers.is_valid():
@@ -54,6 +58,7 @@ class ProduceView(APIView):
             return Response(serializers.errors , status=status.HTTP_400_BAD_REQUEST)
 
   def delete(self , request , pk,format= None):
-        Produce=self.get_produce(pk)
+        permission_classes = (IsAdminOrReadOnly,)
+        produce=self.get_produce(pk)
         produce.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

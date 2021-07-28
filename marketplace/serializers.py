@@ -9,12 +9,12 @@ class ProduceSerializer(serializers.Serializer):
   produce_unit = serializers.CharField(max_length=2)
   produce_price =serializers.CharField(max_length=255)
   produce_location =serializers.CharField(max_length=255)
-  Produce_image = serializers.ImageField()
+  Produce_image =  serializers.URLField()
 
 
 
 class ProfileSerializer(serializers.Serializer):
-  photo_url = serializers.SerializerMethodField()
+  photo_url = serializers.URLField()
   class Meta:
       model = Profile
       fields = ('id','name','bio','photo_url','phone_number','profile_type') 

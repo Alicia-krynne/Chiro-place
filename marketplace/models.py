@@ -10,7 +10,7 @@ class Profile(models.Model):
   )   
   photo_url = CloudinaryField("profilepics",null= True)
   name = models.CharField(max_length=255)
-  bio = models.CharField(max_length=1000)
+  about = models.CharField(max_length=1000)
   profile_type = models.CharField(max_length=255,choices=PROFILE_TYPE )
   Phone_number = models.CharField(max_length=255)
 
