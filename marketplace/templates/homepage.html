@@ -4,21 +4,23 @@
 {% block content %}
 {{ block.super}}
 
+<section class="homepage">
 <div class="container" id="main" style='background-color:rgb(86, 226, 245)' float="justify-content-t">
       <div class="row">
         <div class="column">
+          
                   <h3>HI THIS IS CHIRO ! </h3>
 
-                  <P>Buy  or  sell fresh  off the  farm  produce  here</P>
+                  <P>Buy or sell fresh farm produce here</P>
         </div>
       </div>
 
-
+</section>
   {% if user.is_authenticated %}
-  <section>
+<section>
     <p>CHIRO PRODUCTS</p>
-    {%if produce%}
-{%for produce in produce%}
+{%if produce%}
+{%for produce in produce %}
  <div class="container">
 <div  class="row">
   <div class="col-md-4">
@@ -47,6 +49,8 @@
 
   {% else %}
   <section>
+
+    <p>Sign-in to  buy or sell your farm produce</p>
     <form  action="/accounts/register/" method="post">
       {% csrf_token %}
       {% bootstrap_form form %}
