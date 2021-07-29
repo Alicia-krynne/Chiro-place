@@ -6,12 +6,13 @@ from django.shortcuts import render ,redirect
 from django.http.response import Http404
 from rest_framework import serializers,status
 from .permissions import IsAdminOrReadOnly
+from .forms import NewProduceForm
 
 def welcome(request):
     profile=Profile.objects.all()
     produce= Produce.objects.all()
     
-    return render(request,'homepage.html')
+    return render(request,"homepage.html",{"profile":profile,"produce":produce})
 
 def search_results(request):
     
@@ -20,7 +21,7 @@ def search_results(request):
         searched_produce = Produce.search_by_produce_type(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"project": searched_produce})
+        return render(request, "search.html",{"message":message,"project": searched_produce})
   
   else:
     message="No search made"
@@ -28,13 +29,28 @@ def search_results(request):
 
 def display_all_produce(request):
     try:
-        project = Produce.objects.all()
-        print(project)
-        return render(request,"project.html", {"projects":project})
+        produce = Produce.objects.all()
+        print(produce)
+        return render(request,"produce.html", {"produce":produce})
 
     except Produce.DoesNotExist:
         raise Http404()
     
+
+def sell(request):
+    produce = Produce.objects.all()
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProduceForm(request.POST, request.FILES)
+        if form.is_valid():
+            produce= form.save(commit=False)
+            produce.user = current_user
+            produce.save()
+        return redirect('/')
+
+    else:
+        form = NewProduceForm()
+    return render(request, 'sell.html', {"form": form,"produce":produce })
 
 class ProfileView(APIView):
   def get_profile(self , pk):
