@@ -1,12 +1,9 @@
-{% load bootstrap4 %}
-{% load static%}
-{%load django_forms%}
+{% load bootstrap4 %} {% load static %} 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CHIRO {{title}}</title>
 
 {% block styles %} 
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
- 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.9/css/star-rating.min.css" integrity="sha512-Q1t4nmx/2UzBKmzkFk01AHErcEd033B+Pi3kkUGPCzk6jvvmLCkihk4x+vG/bLQejLDsGXxLCgaGyungqgFydg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.9/js/star-rating.min.js">
@@ -21,7 +18,9 @@
    
   {%block content%}
 
-
+  {% for field in form %}
+  {% bootstrap_field field %}
+  {% endfor %}
    {%endblock%}
   
 

@@ -8,10 +8,10 @@ from rest_framework import serializers,status
 from .permissions import IsAdminOrReadOnly
 
 def welcome(request):
-    # profile=Profile.objects.all()
-    # produce= Produce.objects.all()
+    profile=Profile.objects.all()
+    produce= Produce.objects.all()
     
-    return render(request,'homepage.html')
+    return render(request,'homepage.html',)
 
 def search_results(request):
     

@@ -1,8 +1,8 @@
 {%extends 'base.html'%}
-{%load bootstrap4%}
+{%load bootstrap4%} {% bootstrap_form form %}
 {%load static%}
 {% block content %}
-
+{{ block.super}}
 
 <div class="jumbotron">
   <h1 class="display-3">Hello, Welcome to CHIRO!</h1>
