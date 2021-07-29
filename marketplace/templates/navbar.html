@@ -1,0 +1,32 @@
+{% load bootstrap4 %} {% load static %}
+{% block content%}
+
+{% if user.is_authenticated %}
+<nav class="nav nav-pills nav-fill">
+  <a class="nav-item nav-link active" href="/">Home</a>
+  <a class="nav-item nav-link" href="new/produce/">SELL PRODUCE</a></button>
+  <a class="nav-item nav-link" href="farm/"> BUY PRODUCE</a></button>  
+  <a class="nav-item nav-link" href="profile/">Profile</a>
+  <a class="nav-item nav-link" href="/logout">Logout</a>
+  
+
+  <!-- Adding a search form  -->
+  <form class="form-inline my-2 my-lg-0" role="search" action="search/">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
+{% else %}
+<div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Account
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/accounts/login">Sign-in  </a>
+    <a class="dropdown-item" href="/accounts/register">Register</a>
+    <a class="dropdown-item" href="/admin">Admin</a>
+  </div>
+</div>
+{% endif %}
+</nav>
+{%endblock%}

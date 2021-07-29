@@ -8,10 +8,33 @@ from rest_framework import serializers,status
 from .permissions import IsAdminOrReadOnly
 
 def welcome(request):
-    profile=Profile.objects.all()
-    produce= Produce.display_all_produce()
+    # profile=Profile.objects.all()
+    # produce= Produce.objects.all()
     
-    return render(request,'welcome.html',{"produce":produce,"profile":profile})
+    return render(request,'homepage.html')
+
+def search_results(request):
+    
+  if 'produce' in request.GET and request.GET["produce"]:
+        search_term = request.GET.get("produce")
+        searched_produce = Produce.search_by_produce_type(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"project": searched_produce})
+  
+  else:
+    message="No search made"
+    return render(request,"search.html",{"message":message})
+
+def display_all_produce(request):
+    try:
+        project = Produce.objects.all()
+        print(project)
+        return render(request,"project.html", {"projects":project})
+
+    except Produce.DoesNotExist:
+        raise Http404()
+    
 
 class ProfileView(APIView):
   def get_profile(self , pk):
