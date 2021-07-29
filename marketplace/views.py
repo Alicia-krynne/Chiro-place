@@ -11,7 +11,7 @@ def welcome(request):
     profile=Profile.objects.all()
     produce= Produce.objects.all()
     
-    return render(request,'homepage.html',)
+    return render(request,'homepage.html')
 
 def search_results(request):
     
