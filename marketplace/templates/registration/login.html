@@ -1,25 +1,26 @@
-{%extends "django_registration/base.html"%} {% load bootstrap4 %}
+{%extends "django_registration/base.html"%}
+{% load bootstrap4 %}
 {% block content %}
 <div class="container">
   <div class="row">
-    <!-- Empty div -->
     <div class="col-md-4"></div>
     <div class="col-md-4">
       {% if form.errors %}
-        <p> Some Information Might be Incorrect, check yor fieelds and try  again </p>
+        <p> Password or Username is incorrect </p>
       {% endif %}
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="text-center">Sign Up to Chiro</h3>
+          <h3 class="text-center">welcome to Chiro Sign In</h3>
         </div>
         <div class="panel-body">
 
-          <form  action="/accounts/register/" method="post">
+          <form  action="/accounts/login/" method="post">
             {% csrf_token %}
-            {% bootstrap_form form %}
+            {% bootstrap_form form%}
+
             <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+              <input type="submit" class="btn btn-primary btn-sm" value="Login">
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
@@ -34,9 +35,6 @@
     <!-- empty div -->
     <div class="col-md-4"></div>
   </div>
-  <div class="alert alert-secondary" role="alert">
-    <strong>Well done!</strong> You successfully registered
-</div>
 </div>
 
-{% endblock%}
+{% endblock %}
