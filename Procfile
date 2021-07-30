@@ -1,0 +1,1 @@
+web: gunicorn chiroplace.wsgi --log-file - 
