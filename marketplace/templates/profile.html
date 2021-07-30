@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{%load static%}
+{% block content %}
+{%if profiles%}
+{%for p in profiles %}
+
+<div class="card">
+  <div class="card-body">
+    <p class="card-text"> {{p.name}}</p>
+    <p class="card-text"> {{p.bio}}</p>
+  </div>
+  <img src="{{p.photo_url.image.url}}" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">{{p.phone_number}}</p>
+  </div>
+</div>
+{%endfor%}
+{%endif%}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

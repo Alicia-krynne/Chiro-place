@@ -36,6 +36,14 @@ def display_all_produce(request):
     except Produce.DoesNotExist:
         raise Http404()
     
+def display_profile(request):
+    try:
+        profiles = Profile.objects.all()
+        print(profiles)
+        return render(request,"profile.html", {"profiles":profiles})
+
+    except Produce.DoesNotExist:
+        raise Http404()
 
 def sell(request):
     produce = Produce.objects.all()
