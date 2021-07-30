@@ -2,11 +2,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Produce, Profile
 from .serializers import ProduceSerializer,ProfileSerializer
-from django.shortcuts import render ,redirect
+from django.shortcuts import render ,redirect, get_object_or_404
 from django.http.response import Http404
 from rest_framework import serializers,status
 from .permissions import IsAdminOrReadOnly
-from .forms import NewProduceForm
+from .forms import NewProduceForm,CommentForm
 
 def welcome(request):
     profile=Profile.objects.all()
@@ -79,6 +79,26 @@ class ProfileView(APIView):
             serializers.save()
             return Response(serializers.data , status=status.HTTP_201_CREATED)
         return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
+
+def post_detail(request, slug):
+    template_name = 'post_detail.html'
+    post = get_object_or_404(Produce, slug=slug)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            # Save the comment
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, template_name, {'post': post,
+                                           'comments': comments,
+                                           'new_comment': new_comment,
+                                           'comment_form': comment_form})
 
 class ProduceView(APIView):
   def get_produce(self , pk):

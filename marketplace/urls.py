@@ -12,6 +12,7 @@ urlpatterns = [
   path('profile/',views.display_profile,name='profile'),
   path('produce/', ProduceView.as_view()),
   path('profiles/',ProfileView.as_view()),
+  path('<slug:slug>/', views.post_detail, name='post_detail')
 #     path('profile/<int:pk>',ProduceView.as_view()),
 #     path('produce/<int:pk>',ProduceView.as_view()),
   ]

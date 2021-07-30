@@ -30,13 +30,22 @@ class Produce(models.Model):
   produce_unit = models.CharField(max_length=2, choices=PRODUCE_UNIT)
   produce_price =models.IntegerField()
   produce_location =models.CharField(max_length=255)
+  profile = models.ForeignKey('Profile',models.SET_NULL,null=True)
+
+  
+  def save_produce(self):
+        self.save()
+
+  def delete_produce(self):
+      self.delete()
 
   def __str__(self):
     return self.produce_type
 
+
 class Comment(models.Model):
     post = models.ForeignKey(Produce,on_delete=models.CASCADE,related_name='comments')
-    name = models.CharField(max_length=80)
+    name = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='comments')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
